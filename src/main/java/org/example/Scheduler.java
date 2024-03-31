@@ -1,40 +1,28 @@
 package org.example;
 
-import org.example.Interface.DataValidator;
 import org.example.data.DatabaseWorks;
-import org.example.LogTransformation.LogTransformationProxyCreate;
-import org.example.LogTransformation.Logger;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
-
-
 @Component
 public class Scheduler{
-
     private ScannerReader  scannerReader;
-    private DataValidator < LineFile, ValidRecord>  validatorComponent;
+    //private DataValidator < LineFile, ValidRecord>  validatorComponent;
+    private DataValidatorComponent validatorComponent;
     private  FileReaderComponent fileReaderComponent;
     private DatabaseWorks databaseWorks;
-    private Logger logger;
-
+    //private Logger logger;
     public Scheduler (
         ScannerReader scannerReader,
-        //DataValidatorComponent validatorComponent,
-        DataValidator < LineFile, ValidRecord>  validatorComponent,  //чуть голова не отвалилась пока до этого догадался
-                                                                   // попробовать
+        DataValidatorComponent validatorComponent,
         FileReaderComponent fileReaderComponent,
-        DatabaseWorks databaseWorks,
-        Logger logger
+        DatabaseWorks databaseWorks
 
         ){
         this.scannerReader=scannerReader;
         this.fileReaderComponent = fileReaderComponent;
-        this.validatorComponent = validatorComponent;  // абстракный тип
-        this.validatorComponent = LogTransformationProxyCreate.createproxy(validatorComponent,logger);
+        this.validatorComponent = validatorComponent;
         this.databaseWorks=databaseWorks;
-        this.logger=logger;
     }
 
     @Scheduled(initialDelay = 0,  fixedRate = Long.MAX_VALUE)

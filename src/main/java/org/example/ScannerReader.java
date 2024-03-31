@@ -2,7 +2,6 @@ package org.example;
 
 import org.example.Interface.PathReader;
 import org.springframework.stereotype.Component;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +40,7 @@ public class ScannerReader implements PathReader<String> {
             }
 
             paths.add(path);
-            System.out.println ("Директрия принята ");
+            System.out.println ("Директория принята ");
         }
 
         scanner.close();

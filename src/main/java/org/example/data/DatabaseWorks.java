@@ -21,9 +21,7 @@ public class DatabaseWorks implements DatabaseWriter<LineFile,ValidRecord> {
     private final UserRepository userRepository;
     private final LoginRepository loginRepository;
     //.. для подключения
-
     private DataSource dataSource;
-
     public DatabaseWorks (DataSource dataSource,LogErrorRepository logErrorRepository,
                           UserRepository userRepository,
                           LoginRepository loginRepository
@@ -39,15 +37,11 @@ public class DatabaseWorks implements DatabaseWriter<LineFile,ValidRecord> {
                                         @Value("${spring.datasource.username}") String username,
                                         @Value("${spring.datasource.password}")String password
                                       )
-
-
     {
         ((PGSimpleDataSource)dataSource).setURL(url);
         ((PGSimpleDataSource)dataSource).setUser(username);
         ((PGSimpleDataSource)dataSource).setPassword(password);
     }
-
-
     @Override
     @Transactional///запись ошибочных записей
     public void writeErrorToDateBase(List<LineFile> errorsLines) {
@@ -115,7 +109,6 @@ public class DatabaseWorks implements DatabaseWriter<LineFile,ValidRecord> {
             }
 
         }
-
 
     }
 

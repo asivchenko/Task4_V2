@@ -2,7 +2,6 @@ package org.example;
 
 import org.example.Interface.TextFileReader;
 import org.springframework.stereotype.Component;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -23,8 +22,15 @@ public class FileReaderComponent <T> implements TextFileReader<T> {
                 try  (BufferedReader reader=new BufferedReader(new FileReader(file))) {
                     String line;
                     while ((line =reader.readLine()) != null ) {
-                        //T data = parseline(line, file.getName());
-                        lines.add((T) new LineFile (line, file.getName()));  // делаем cast как преждагают
+                            String[] attributes = line.split(";");
+                            if (attributes.length != 4) {
+                                lines.add((T) new LineFile(null,null,null, null,
+                                                                   file.getName(),line, "Не верен формат строки"));
+
+                            }
+                            else
+                                lines.add((T) new LineFile ( attributes[0],attributes[1],attributes[2],
+                                                             attributes[3],file.getName(),line,null));
                     }
 
                 } catch (Exception e) {
@@ -34,13 +40,6 @@ public class FileReaderComponent <T> implements TextFileReader<T> {
         }
         return lines;
     }
-    /*   здесь можно навернуть все что  надо в класс
-    private T parseline (String line, String namefile )
-    {
-        return (T) new LineFile (line, namefile);
-    }
-    */
-
 }
 
 

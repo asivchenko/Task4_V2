@@ -8,7 +8,7 @@ package org.example.LogTransformation;
         import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
+@Target(ElementType.TYPE)   // для класса для метода METHOD
 public @interface LogTransformation {
     String LogFile () default "default.log";
 }

@@ -26,9 +26,7 @@ public class ValidRecord {
         return login;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
+
 
     public String getFio() {
         return fio;
@@ -42,16 +40,9 @@ public class ValidRecord {
         return accessDateTime;
     }
 
-    public void setAccessDateTime(Timestamp accessDateTime) {
-        this.accessDateTime = accessDateTime;
-    }
 
     public String getAppType() {
         return appType;
-    }
-
-    public void setAppType(String appType) {
-        this.appType = appType;
     }
 
     @Override
